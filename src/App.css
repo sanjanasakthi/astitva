@@ -1,0 +1,13 @@
+.Box-Set{
+    background-color: #8DCAC6 ;
+}
+
+#SetLoginBtnHov:hover{
+    background-color: honeydew;
+    border: none;
+    color: #1B4262;
+}
+
+.SetTextColor{
+    color: honeydew;
+}

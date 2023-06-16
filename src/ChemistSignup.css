@@ -1,0 +1,41 @@
+#setchemistslide{
+    animation-duration: 2s;
+    animation-name: slideChemistRightIn;
+    animation-direction: alternate;
+  }
+  
+  @keyframes slideChemistRightIn {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0%);
+    }
+  }
+
+  .ChemistimgHW{
+    height: 90%;
+    width:95%;
+  }
+
+  .Chemistavatar {
+    vertical-align: middle;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+
+  #ChemistImgAnimation{
+    animation-duration: 3s;
+    animation-name: slidechemistLeftin;
+    animation-direction: alternate;
+  }
+
+  @keyframes slidechemistLeftin {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0%);
+    }
+  }
