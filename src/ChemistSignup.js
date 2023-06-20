@@ -23,13 +23,129 @@ import {MdOutlinePhotoCameraFront} from 'react-icons/md'
 import { useNavigate } from 'react-router-dom';
 import ChemistSideImg from './Images/ChemistSideImage.png'
 import Button from '@mui/material/Button';
-
-
+import { useEffect, useState } from "react";
+import axios from 'axios';
 
 
 function ChemistSignUp() {
 
     const navigate = useNavigate();
+
+    const [pharmacyname, setpharmacyname] = useState("");
+    const [firstname, setfirstname] = useState("");
+    const [lastname, setlastname] = useState("");
+    const [doornum, setdoornum] = useState("");
+    const [street, setstreet] = useState("");
+    const [area, setarea] = useState("");
+    const [city, setcity] = useState("");
+    const [pincode, setpincode] = useState("");
+    const [state, setstate] = useState("");
+    const [mobilenumber, setmobilenumber] = useState("");
+    const [email, setemail] = useState("");
+    const [druglicencenum, setdruglicencenum] = useState("");
+    const [chemistphoto, setchemistphoto] = useState("");
+    const [chemistlicencephoto, setchemistlicencephoto] = useState("");
+    const [isValid, setValid] = useState(false);
+
+
+
+
+
+    const postData = () => {
+        axios.post(`http://localhost:4000/astitvasignup`, 
+            {
+            
+                pharmacyname,
+                firstname,
+                lastname,
+                doornum,
+                street,
+                area,
+                city,
+                pincode,
+                state,
+                mobilenumber,
+                email,
+                druglicencenum,
+                chemistphoto,
+                chemistlicencephoto
+
+                
+            
+        
+            }).then(() => {
+            navigate.push('/read')
+        })
+    }
+
+
+    const onChangeHandler = (fieldName, value) => {
+        if (fieldName === "pharmacyname") {
+            setpharmacyname(value);
+        }
+        else if (fieldName === "firstname") {
+            setfirstname(value);
+        }
+        else if (fieldName === "lastname") {
+            setlastname(value);
+        }
+        else if (fieldName === "doornum") {
+            setdoornum(value);
+        }else if (fieldName === "street") {
+            setstreet(value);
+        }else if (fieldName === "area") {
+            setarea(value);
+        }else if (fieldName === "city") {
+            setcity(value);
+        }else if (fieldName === "pincode") {
+            setpincode(value);
+        }else if (fieldName === "state") {
+            setstate(value);
+        }else if (fieldName === "mobilenumber") {
+            setmobilenumber(value);
+            
+        }else if (fieldName === "email") {
+            setemail(value);
+        }else if (fieldName === "druglicencenum") {
+            setdruglicencenum(value);
+        }else if (fieldName === "chemistphoto") {
+            setchemistphoto(value);
+        }else if (fieldName === "chemistlicencephoto") {
+            setchemistlicencephoto(value);
+        }
+    }
+   
+
+
+    const validate = () => {
+        return pharmacyname.length > 0, firstname.length > 0, lastname.length > 0, doornum.length > 0, street.length > 0, area.length > 0, chemistphoto.length > 0,
+            state.length > 0, pincode.length > 0, mobilenumber.length > 0
+            , email.length > 0, druglicencenum.length > 0, chemistphoto.length > 0, chemistlicencephoto.length > 0;
+      };
+      useEffect(() => {
+        const isValid = validate();
+        setValid(isValid);
+      }, [pharmacyname, firstname,
+          lastname, doornum, street, area,
+          city, state, pincode, mobilenumber,
+          email, druglicencenum,
+          chemistphoto, chemistlicencephoto
+      ]);
+    
+    
+//       const onSubmitHandler = (e) => {
+//         e.preventDefault();
+//         if (email.trim() === "") {
+//             alert("required email field");
+//         }
+//         else if( password.trim() ===""){
+//             alert("required password field");
+//         }
+//         else if (email+ password) {
+//             alert("bye")
+//         }
+// }
+    
 
     return (
         <>
@@ -44,7 +160,7 @@ function ChemistSignUp() {
                     </Typography>
                 </AppBar>
             </Box>
-
+            <form>
             <Grid container rowSpacing={1}  columnSpacing={{ xs: 1, sm: 2, md: 3 }} className='mt-1'>
                 <Grid xs={5}>
                 <img 
@@ -72,11 +188,12 @@ function ChemistSignUp() {
                     
                    <TextField
                         id="standard-basic"
-                            label="Pharamacy Name"
-                            multiline
+                            label="Pharmacy Name"
+                                multiline
+                                type='text'
                             variant="standard"
                             className='ms-1'
-                                
+                            onChange={(e) => { onChangeHandler("pharmacyname", e.target.value) }}
                              />
                     </Box>    
              
@@ -97,9 +214,12 @@ function ChemistSignUp() {
                    <TextField
                         id="standard-basic"
                             label="First Name"
-                            multiline
+                                        multiline
+                                        type='text'
                             variant="standard" 
-                            className='ms-1 mt-3'        
+                                        className='ms-1 mt-3'
+                                        onChange={(e) => { onChangeHandler("firstname", e.target.value) }}            
+                                   
                                 
                              />
                             </Box>
@@ -119,8 +239,12 @@ function ChemistSignUp() {
                         id="standard-basic"
                             label="Door Number"
                             multiline
+                            type='number'
                             variant="standard" 
-                            className='ms-1 mt-3'        
+                                        className='ms-1 mt-3' 
+                                        onChange={(e) => { onChangeHandler("doornum", e.target.value) }}
+                            
+                                    
                                 
                              />
                             </Box>
@@ -138,10 +262,12 @@ function ChemistSignUp() {
                     
                    <TextField
                         id="standard-basic"
-                            label="Area"
+                                        label="Area"
+                                        type='text'
                             multiline
                             variant="standard" 
-                            className='ms-1 mt-3'        
+                                        className='ms-1 mt-3'
+                                        onChange={(e) => { onChangeHandler("area", e.target.value) }}            
                                 
                              />
                             </Box>
@@ -160,9 +286,11 @@ function ChemistSignUp() {
                    <TextField
                         id="standard-basic"
                             label="Pin Code"
-                            multiline
+                                        multiline
+                                        type='number'
                             variant="standard" 
-                            className='ms-1 mt-3'        
+                                        className='ms-1 mt-3'
+                                        onChange={(e) => { onChangeHandler("pincode", e.target.value) }}            
                                 
                              />
                             </Box>
@@ -181,9 +309,11 @@ function ChemistSignUp() {
                    <TextField
                         id="standard-basic"
                             label="Mobile Number"
-                            multiline
+                                        multiline
+                                        type='number'
                             variant="standard" 
-                            className='ms-1 mt-3'        
+                                        className='ms-1 mt-3'
+                                        onChange={(e) => { onChangeHandler("mobilenumber", e.target.value) }}            
                                 
                              />
                             </Box>
@@ -201,9 +331,11 @@ function ChemistSignUp() {
                    <TextField
                         id="standard-basic"
                             label="Drug Licence Number"
-                            multiline
+                                        multiline
+                                        type='number'
                             variant="standard" 
-                            className='ms-1 mt-3'        
+                                        className='ms-1 mt-3' 
+                                        onChange={(e) => { onChangeHandler("druglicencenum", e.target.value) }}            
                                 
                              />
                             </Box>
@@ -225,7 +357,8 @@ function ChemistSignUp() {
                                     multiple
                                     type='file'
                             variant="standard" 
-                            className='ms-1 mt-5 '        
+                                        className='ms-1 mt-5 ' 
+                                        onChange={(e) => { onChangeHandler("chemistphoto", e.target.value) }}            
                                 
                              />
                             </Box>
@@ -248,8 +381,10 @@ function ChemistSignUp() {
                         id="standard-basic"
                             label="Last Name"
                             multiline
-                            variant="standard"
-                            className='ms-1 mt-3'
+                                        variant="standard"
+                                        type='text'
+                                        className='ms-1 mt-3'
+                                        onChange={(e) => { onChangeHandler("lastname", e.target.value) }}
                                 
                              />
                             </Box>
@@ -268,9 +403,11 @@ function ChemistSignUp() {
                    <TextField
                         id="standard-basic"
                             label="Street"
-                            multiline
+                                        multiline
+                                        type='text'
                             variant="standard" 
-                            className='ms-1 mt-3'        
+                                        className='ms-1 mt-3'
+                                        onChange={(e) => { onChangeHandler("street", e.target.value) }}            
                                 
                              />
                             </Box>
@@ -289,8 +426,10 @@ function ChemistSignUp() {
                         id="standard-basic"
                             label="City"
                             multiline
-                            variant="standard" 
-                            className='ms-1 mt-3'        
+                                        variant="standard" 
+                                        type='text'
+                                        className='ms-1 mt-3'
+                                        onChange={(e) => { onChangeHandler("city", e.target.value) }}            
                                 
                              />
                             </Box>
@@ -309,8 +448,10 @@ function ChemistSignUp() {
                         id="standard-basic"
                             label="State"
                             multiline
-                            variant="standard" 
-                            className='ms-1 mt-3'        
+                                        variant="standard" 
+                                        type='text'
+                                        className='ms-1 mt-3'  
+                                        onChange={(e) => { onChangeHandler("state", e.target.value) }}            
                                 
                              />
                             </Box>
@@ -329,9 +470,11 @@ function ChemistSignUp() {
                         id="standard-basic"
                             label="Emai ID"
                             multiline
-                            type='email'
+                                        type='email'
+                                        
                             variant="standard" 
-                            className='ms-1 mt-3'        
+                                        className='ms-1 mt-3'  
+                                        onChange={(e) => { onChangeHandler("email", e.target.value) }}            
                                 
                              />
                             </Box>
@@ -354,14 +497,15 @@ function ChemistSignUp() {
                             type="file"
                             variant="standard" 
                             className='ms-1 mt-5'        
-                                
+                            onChange={(e) => { onChangeHandler("chemistlicencephoto", e.target.value) }}
                              />
                     </Box>
                             </Grid>
                     </Grid>   
                     <div className='text-center'>
                 <Button 
-                    // variant="outlined"
+                                onClick={postData} 
+                                disabled={!isValid}
                     className='mt-5 ms-5 py-4 text-center buttonset'
                     sx={{
                         border: 2,
@@ -380,7 +524,9 @@ function ChemistSignUp() {
                 
                 
                 </Grid>
-        </>
+ 
+            </form>
+                  </>
     )
 }
 export default ChemistSignUp
