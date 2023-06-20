@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
-const port = 3000;
+const port = 4000;
 
 const db = require('./queries');
 
@@ -20,11 +20,14 @@ app.get('/', (request, response) => {
   response.json({ info: 'Node.js, Express, and Postgres API' });
 });
 
-// app.get('/users', db.getUsers);
-// app.get('/users/:id', db.getUserById);
-app.post('/nodeconnect', db.createUser);
-// app.put('/users/:id', db.updateUser);
-// app.delete('/users/:id', db.deleteUser);
+app.get('/userlogin', db.getUsers);
+app.get('/userlogin/:id', db.getUserById);
+app.post('/userlogin', db.createUser);
+
+app.post('/astitvasignup', db.ChemistSignup);
+
+app.put('/userlogin/:id', db.updateUser);
+app.delete('/userlogin/:id', db.deleteUser);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);
