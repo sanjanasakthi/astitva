@@ -20,13 +20,24 @@ app.get('/', (request, response) => {
   response.json({ info: 'Node.js, Express, and Postgres API' });
 });
 
+app.get('/astitvasignup', db.getCount);
+
 app.get('/userlogin', db.getUsers);
+
+app.get('/operatordetails', db.getOperatorData);
+
 app.get('/userlogin/:id', db.getUserById);
+
+app.get('/operatordetails/:id', db.getOperatorDateById);
+
 app.post('/userlogin', db.createUser);
+
+app.post('/operatordetails', db.createOperator);
 
 app.post('/astitvasignup', db.ChemistSignup);
 
 app.put('/userlogin/:id', db.updateUser);
+
 app.delete('/userlogin/:id', db.deleteUser);
 
 app.listen(port, () => {
