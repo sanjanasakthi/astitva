@@ -81,7 +81,7 @@ function ChemistSignUpPage() {
     const [area, setarea] = useState("");
     const [city, setcity] = useState("");
     const [pincode, setpincode] = useState("");
-    const [state, setstate] = useState("");
+    const [states_chemist, setstate] = useState("");
     const [mobilenumber, setmobilenumber] = useState("");
     const [email, setemail] = useState("");
     const [druglicencenum, setdruglicencenum] = useState("");
@@ -90,14 +90,14 @@ function ChemistSignUpPage() {
     const [isValid, setValid] = useState(false);
 
 
+    
 
-
-
+    
     const postData = () => {
         axios.post(`http://localhost:4000/astitvasignup`, 
+       
             {
-            
-                pharmacyname,
+             pharmacyname,
                 firstname,
                 lastname,
                 doornum,
@@ -105,18 +105,15 @@ function ChemistSignUpPage() {
                 area,
                 city,
                 pincode,
-                state,
+                states_chemist,
                 mobilenumber,
                 email,
                 druglicencenum,
                 chemistphoto,
-                chemistlicencephoto
+                chemistlicencephoto,
 
-                
-            
-        
             }).then(() => {
-            navigate.push('/read')
+            navigate('/')
         })
     }
 
@@ -160,34 +157,35 @@ function ChemistSignUpPage() {
 
 
     const validate = () => {
-        return pharmacyname.length > 0, firstname.length > 0, lastname.length > 0, doornum.length > 0, street.length > 0, area.length > 0, chemistphoto.length > 0,
-            state.length > 0, pincode.length > 0, mobilenumber.length > 0
+        return pharmacyname.length > 0, firstname.length > 0,  doornum.length > 0, street.length > 0, area.length > 0, chemistphoto.length > 0,
+        states_chemist.length > 0, pincode.length > 0, mobilenumber.length > 0
             , email.length > 0, druglicencenum.length > 0, chemistphoto.length > 0, chemistlicencephoto.length > 0;
-      };
+    };
+    
       useEffect(() => {
         const isValid = validate();
         setValid(isValid);
       }, [pharmacyname, firstname,
           lastname, doornum, street, area,
-          city, state, pincode, mobilenumber,
+          city, states_chemist, pincode, mobilenumber,
           email, druglicencenum,
           chemistphoto, chemistlicencephoto
       ]);
     
-      const [APIData, setAPIData] = useState([]);
+    //   const [APIData, setAPIData] = useState([]);
 
     
         
-      axios.get(`http://localhost:4000/userlogin`)
-          .then((getData) => {
-              setAPIData(getData.data);
-          })
+    //   axios.get(`http://localhost:4000/userlogin`)
+    //       .then((getData) => {
+    //           setAPIData(getData.data);
+    //       })
  
 
     
-      const account1 = APIData.map((DataItem)=> DataItem.email);
+    //   const account1 = APIData.map((DataItem)=> DataItem.email);
 
-      const getEmail = document.getElementById
+    //   const getEmail = document.getElementById
 
     return (
         <>

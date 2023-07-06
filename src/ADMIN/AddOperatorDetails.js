@@ -42,7 +42,7 @@ function AddOperatorDetails() {
                 operatoremail,
                 doj,
             }).then(() => {
-                navigate.push('/read')
+                navigate('/admin')
             })
     }
 

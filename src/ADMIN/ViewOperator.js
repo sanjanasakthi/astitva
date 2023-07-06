@@ -79,7 +79,7 @@ function ViewOperator() {
                                                                 </TableCell>
                                                                 <TableCell
                                                                     align="center"
-                                                                    key={operatorData.id}
+                                                                   
                                                                 >
                                                                                 
                                                                                     
@@ -88,7 +88,7 @@ function ViewOperator() {
                                                                 </TableCell>
                                                                 <TableCell
                                                                     align="center"
-                                                                    key={operatorData.id}
+                                                                   
                                                                 >
                                                                                     
                                                                     {operatorData.last_name}
@@ -97,7 +97,7 @@ function ViewOperator() {
                                                                 </TableCell>
                                                                 <TableCell
                                                                     align="center"
-                                                                    key={operatorData.id}
+                                                                   
                                                                 >
                                                                                     
                                                                     {operatorData.date_of_birth}
@@ -106,7 +106,7 @@ function ViewOperator() {
                                                                 </TableCell>
                                                                 <TableCell
                                                                     align="center"
-                                                                    key={operatorData.id}
+                                                                   
                                                                 >
                                                                                     
                                                                     {operatorData.mob_num}
@@ -115,7 +115,7 @@ function ViewOperator() {
                                                                 </TableCell>
                                                                 <TableCell
                                                                     align="center"
-                                                                    key={operatorData.id}
+                                                                   
                                                                 >
                                                                                     
                                                                     {operatorData.email}
@@ -124,7 +124,7 @@ function ViewOperator() {
                                                                 </TableCell>
                                                                 <TableCell
                                                                     align="center"
-                                                                    key={operatorData.id}
+                                                                   
                                                                 >
                                                                                     
                                                                     {operatorData.date_of_joining}

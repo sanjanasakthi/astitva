@@ -29,7 +29,7 @@ root.render(
         <Route path='/operator' element={<Operator/>} />
         <Route path='/admin' element={<Admin/>} />
         <Route path='/chemist' element={<Chemist/>} />
-        <Route path='/chemist' element={<DashBoard/>} />
+        <Route path='/dashboard' element={<DashBoard/>} />
 
 
         

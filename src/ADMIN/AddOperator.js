@@ -78,7 +78,8 @@ function AddOperator() {
                                              type='text'
                                              // value={email}
                                              onChange={(e) => { onChangeHandler("name", e.target.value) }}
-                         /><br/>
+                        />
+                        <br />
          
                                    <TextField
                                              id="input-with-sx"

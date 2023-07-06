@@ -15,6 +15,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from "react";
 import axios from 'axios';
 
+
 //  dark mode start //
 
 // const setLoginDark = () => {
@@ -61,10 +62,11 @@ function LoginPage() {
     const navigate = useNavigate();
 
     
-   
-    const [isValid, setValid] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [APIData, setAPIData] = useState([]);
+    const [isValid, setValid] = useState(false);
+   
     // const password = object?.password;
 
 
@@ -90,14 +92,6 @@ function LoginPage() {
     }
 
    
-  
-
-
-   
-
- const [APIData, setAPIData] = useState([]);
-
-    
         
         axios.get(`http://localhost:4000/userlogin`)
             .then((getData) => {
@@ -107,28 +101,29 @@ function LoginPage() {
  
     
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault()  
 
    
-        const account = APIData.map((DataItem)=> DataItem.email);
-        const indexEmail = account.indexOf(email)
+        const account = APIData.map((DataItem) => DataItem.email);
 
+        const indexEmail = account.indexOf(email)
+    
+        // console.log(accountNAME[indexEmail])
         if (indexEmail < 0) {
-            console.log("invalid records")
+            alert("invalid records")
         }
 
         else {
 
-        
 
-
-            const passwordValue = (APIData[indexEmail].loginpassword)
+             const passwordValue = (APIData[indexEmail].loginpassword)
 
             const tableUserType = (APIData[indexEmail].usertype)
 
-        
-            if (account.includes(email) && (passwordValue === password)) {
-                  
+            // alert(accountNAME[indexEmail])
+            if (account.includes(email) && (passwordValue === password))                
+            {
+
                 if (tableUserType === "Chemist") {
                     navigate("/chemist");
                     console.log("He is a chemist")
@@ -170,6 +165,8 @@ function LoginPage() {
 
         return (
             <>
+               
+
                 <div id='Loginnav'>
                 <Box>
                     <AppBar position="static" sx={{ backgroundColor: '#8DCAC6 ' }} className='mt-2'>
@@ -179,19 +176,7 @@ function LoginPage() {
                             </button>
                         
                             WELCOME TO ASTITVA LOGIN PAGE
-                            {/* <b className="toggle-theme-wrapper d-flex justify-content-end">
-                        <span>☀️</span>
-                        <label className="toggle-theme" htmlFor="checkbox">
-                            <input
-                            type="checkbox"
-                            id="checkbox"
-                            onChange={toggleLoginTheme}
-                            defaultChecked={defaultDark}
-                            />
-                            <div className="slider round"></div>
-                        </label>
-                        <span>🌒</span>
-                        </b> */}
+                           
                         </Typography>
                         
                     </AppBar>
@@ -255,55 +240,6 @@ function LoginPage() {
                                     onChange={(e) => { onChangeHandler("password", e.target.value) }}
                                 />
                             </Box>
-{/* 
-                            <Box
-                             fullWidth
-                                sx={{
-                                    display: 'flex',
-                                    alignItems: 'flex-end',
-                                    fontSize: 30,
-                                    marginTop: 15
-                                }}
-                    >
-                        <BsShieldLockFill /> */}
-                        {/* <TextField
-                            id="input-with-sx"
-                            label="User Type"
-                            type="password"
-                            variant="standard"
-                            sx={{
-                                width: 500,
-                            }}
-                            className='ms-3'
-                            value={password}
-                            onChange={(e) => { onChangeHandler("usertype", e.target.value) }}
-                                /> */}
-                                {/* <label>
-                                    User Type
-                                </label>
-                                <select onChange={(e) => { onChangeHandler("usertype", e.target.value) }}>
-                                    Type
-
-                                    <option className='disabled'>
-                                        Select
-                                    </option>
-                                    <option
-                                        
-                                    >
-                                        Admin
-                                    </option>
-                                    <option
-                                       
-                                    >
-                                        Chemist
-                                    </option>
-                                    <option
-                                        
-                                    >
-                                        Operator
-                                    </option>
-                                </select> */}
-                    {/* </Box> */}
                         </Grid>
                            
 
@@ -344,37 +280,7 @@ function LoginPage() {
                    
                 </form>
 
-                {/* <Button
-                    variant="outlined"
-                    className='mt-5 ms-5 py-4  buttonset'
-                    onClick={() => navigate("/fetchtable")}
-                    id='LoginBtnHov'
-                    sx={{
-                        border: 2,
-                        borderBlockStyle: 'solid',
-                        backgroundColor: '#8DCAC6',
-                        color: 'honeydew',
-                                             
-                    }}>
-                    
-                    <h6> <span> Get Login  Data</span></h6>
-                </Button>
-
-                <Button
-                    variant="outlined"
-                    className='mt-5 ms-5 py-4  buttonset'
-                    onClick={() => navigate("/fetchtableid")}
-                    id='LoginBtnHov'
-                    sx={{
-                        border: 2,
-                        borderBlockStyle: 'solid',
-                        backgroundColor: '#8DCAC6',
-                        color: 'honeydew',
-                                             
-                    }}>
-                    
-                    <h6> <span> Get Login  Data by ID</span></h6>
-                </Button> */}
+                
 
                 
             </>
